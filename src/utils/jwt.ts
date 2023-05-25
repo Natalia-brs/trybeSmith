@@ -1,15 +1,11 @@
 import JWT from 'jsonwebtoken';
+import { Userpayload } from '../types/Payload';
 
 const secret = process.env.JWT_SECRET;
 
 if (!secret) {
-  throw new Error('Secret não encontrado');
+  throw new Error('Secret is missing');
 }
-
-type Userpayload = {
-  username: string,
-  password: string,
-};
 
 const token = (payload: Userpayload): string => {
   const createToken = JWT.sign(payload, secret);
